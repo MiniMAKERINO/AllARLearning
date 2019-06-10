@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIOrientationHandler : MonoBehaviour
+public class UIOrientation : MonoBehaviour
 {
 
-    public GameObject PortraitCanvas;
-    public GameObject LandscapeLeftCanvas;
-    public GameObject LandscapeRightCanvas;
+    [SerializeField] private GameObject PortraitCanvas;
+    [SerializeField] private GameObject LandscapeLeftCanvas;
+    [SerializeField] private GameObject LandscapeRightCanvas;
 
     // Update is called once per frame
     void Update()
     {
         if (Screen.orientation == ScreenOrientation.Portrait) {
+
             PortraitCanvas.SetActive(true);
 
             LandscapeLeftCanvas.SetActive(false);
