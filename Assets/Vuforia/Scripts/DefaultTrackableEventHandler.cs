@@ -8,6 +8,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 using UnityEngine;
 using Vuforia;
+using UnityEngine.UI;
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
@@ -17,6 +18,10 @@ using Vuforia;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
+    // CUSTOM VARIABLES to display Model Names -------------------------------------------------------------------------------
+    public Text PortraitModelName;
+    public Text LandscapeLeftModelName;
+    public Text LandscapeRightModelName;
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -54,6 +59,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     {
         m_PreviousStatus = previousStatus;
         m_NewStatus = newStatus;
+        string DisplayModelName = mTrackableBehaviour.TrackableName; // ----------------------------------------------------------- Variable that stores the AR marker/model name
 
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED ||
@@ -61,19 +67,23 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
+            PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = DisplayModelName;// Make all canvas UI ModelName objects' text component = DisplayModelName
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
             OnTrackingLost();
+            PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = "Searching for Marker..."; // Make all canvas UI ModelName objects' text component = "Searching for Marker" string
         }
         else
         {
+            // ERROR TRAPPING
             // For combo of previousStatus=UNKNOWN + newStatus=UNKNOWN|NOT_FOUND
             // Vuforia is starting, but tracking has not been lost or found yet
             // Call OnTrackingLost() to hide the augmentations
             OnTrackingLost();
+            PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = "Searching for Marker..."; // ERROR HANDLER Make all canvas UI ModelName objects' text component = "Searching for Marker" string ERROR HANDLER
         }
     }
 
@@ -81,8 +91,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     #region PROTECTED_METHODS
 
-    protected virtual void OnTrackingFound()
+    protected virtual void OnTrackingFound() // Enable all render compenents of AR Model to display
     {
+        // Stores Render, Collider, and Cavas components into a variable
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
@@ -101,7 +112,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     }
 
 
-    protected virtual void OnTrackingLost()
+    protected virtual void OnTrackingLost() // Disables all render compenents of AR Model on display
     {
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);

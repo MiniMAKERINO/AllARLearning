@@ -210,6 +210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PortraitModelName: {fileID: 985295151}
+  LandscapeLeftModelName: {fileID: 2052643484}
+  LandscapeRightModelName: {fileID: 1352656349}
 --- !u!114 &81558290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,7 +1151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 101.6, y: -101.6}
+  m_AnchoredPosition: {x: 101.599976, y: -101.6001}
   m_SizeDelta: {x: 162.70001, y: 162.70001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &824848137
@@ -1396,7 +1399,7 @@ GameObject:
   - component: {fileID: 985295152}
   - component: {fileID: 985295151}
   m_Layer: 5
-  m_Name: ModelName
+  m_Name: PortraitModelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1623,7 +1626,7 @@ GameObject:
   - component: {fileID: 1352656350}
   - component: {fileID: 1352656349}
   m_Layer: 5
-  m_Name: ModelName
+  m_Name: LandscapeRightModelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2912,7 +2915,7 @@ GameObject:
   - component: {fileID: 2052643485}
   - component: {fileID: 2052643484}
   m_Layer: 5
-  m_Name: ModelName
+  m_Name: LandscapeLeftModelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
