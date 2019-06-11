@@ -18,7 +18,7 @@ using UnityEngine.UI;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
-    // CUSTOM VARIABLES to display Model Names -------------------------------------------------------------------------------
+    // CUSTOM VARIABLES to display Model Names --------------------------------------------------------------- Not all of the code was written by Johnnathan mak
     public Text PortraitModelName;
     public Text LandscapeLeftModelName;
     public Text LandscapeRightModelName;
