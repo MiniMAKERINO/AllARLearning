@@ -79,7 +79,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
             PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = DisplayModelName;// Make all canvas UI ModelName objects' text component = DisplayModelName
-            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InformationText;
+            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InformationText; // Display info text on all text panels
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
@@ -87,7 +87,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
             OnTrackingLost();
             PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = "Searching for Marker..."; // Make all canvas UI ModelName objects' text component = "Searching for Marker" string
-            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InfoInstructionText;
+            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InfoInstructionText; // Make all canvas UI PanelText objects' text component InfoInstructionsText string
 
         }
         else
@@ -98,7 +98,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             // Call OnTrackingLost() to hide the augmentations
             OnTrackingLost();
             PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = "Searching for Marker..."; // ERROR HANDLER Make all canvas UI ModelName objects' text component = "Searching for Marker" string ERROR HANDLER
-            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InfoInstructionText; // ERROR HANDLER Make all canvas UI PanelText objects' text component = "Searching for Marker" string ERROR HANDLER
+            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InfoInstructionText; // ERROR HANDLER Make all canvas UI PanelText objects' text component InfoInstructionsText string ERROR HANDLER
         }
     }
 
@@ -112,6 +112,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
+        PlayOnStateChange player = GetComponentInChildren<PlayOnStateChange>(); // ----------------------------------------------------- Inherit public class that plays audio
 
         // Enable rendering:
         foreach (var component in rendererComponents)
@@ -124,6 +125,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+
+        player.Initialize();
+        player.PlayOnAppear();
     }
 
 
@@ -132,6 +136,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
+        PlayOnStateChange player = GetComponentInChildren<PlayOnStateChange>(); // ----------------------------------------------------- Inherit public class that plays audio
 
         // Disable rendering:
         foreach (var component in rendererComponents)
@@ -144,6 +149,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
+
+        player.PlayOnDisappear();
     }
 
     #endregion // PROTECTED_METHODS
