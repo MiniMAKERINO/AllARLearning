@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1347,7 +1347,10 @@ MonoBehaviour:
 
     4. Information about model will show up in this area
 
-    5. Have fun learning with AllARLearning!'
+    5. Tap the model to toggle animation on/off
+
+
+    Have fun learning with AllARLearning!'
 --- !u!222 &518634533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1437,7 +1440,10 @@ MonoBehaviour:
 
     4. Information about model will show up in this area
 
-    5. Have fun learning with AllARLearning!'
+    5. Tap the model to toggle animation on/off
+
+
+    Have fun learning with AllARLearning!'
 --- !u!222 &552709118
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2589,7 +2595,10 @@ MonoBehaviour:
 
     4. Information about model will show up in this area
 
-    5. Have fun learning with AllARLearning!'
+    5. Tap the model to toggle animation on/off
+
+
+    Have fun learning with AllARLearning!'
 --- !u!222 &996000111
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4868,7 +4877,10 @@ MonoBehaviour:
 
     4. Information about model will show up in this area
 
-    5. Have fun learning with AllARLearning!'
+    5. Tap the model to toggle animation on/off
+
+
+    Have fun learning with AllARLearning!'
 --- !u!222 &1991500765
 CanvasRenderer:
   m_ObjectHideFlags: 0
