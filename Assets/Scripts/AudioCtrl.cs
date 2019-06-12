@@ -14,26 +14,26 @@ public class AudioCtrl : MonoBehaviour
     public GameObject LandscapeRightUnmutedIcon;
     public GameObject LandscapeRightMutedIcon;
 
-    public GameObject AudioListenerObject;
+    public AudioSource audioSource;
 
     void Start()
     {
-    // Obsolete Code below commented out:
-    // PortraitUnmutedIcon.SetActive(true);
-    // PortraitMutedIcon.SetActive(false);
+        AudioSource audioSource = GetComponent<AudioSource>(); // Initialise audiosource
+    /*Obsolete Code below commented out:
+     PortraitUnmutedIcon.SetActive(true);
+     PortraitMutedIcon.SetActive(false);
 
-    // LandscapeLeftUnmutedIcon.SetActive(true);
-    // LandscapeLeftMutedIcon.SetActive(false);
+    LandscapeLeftUnmutedIcon.SetActive(true);
+    LandscapeLeftMutedIcon.SetActive(false);
 
-    // LandscapeRightUnmutedIcon.SetActive(true);
-    // LandscapeRightMutedIcon.SetActive(false);
+    LandscapeRightUnmutedIcon.SetActive(true);
+    LandscapeRightMutedIcon.SetActive(false); */
 }
 
     public void ToggleAudio() //Toggle audio and mute/unmute icon function
     {
 
-        bool AudioListenerObject_CurrentState = AudioListenerObject.activeSelf;
-        AudioListenerObject.SetActive(!AudioListenerObject_CurrentState);
+        audioSource.mute = !audioSource.mute; // MUTE AUDIO!!!
 
         // Get state of the unmute and mute icons for Portrait canvas as a bool, then switches the 'active-state' of the icons
         // to display one at a time, and let the user know that SFX is either ON or OFF.
