@@ -22,6 +22,14 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     public Text PortraitModelName;
     public Text LandscapeLeftModelName;
     public Text LandscapeRightModelName;
+    // CUSTOM VARIABLES to display info
+    public Text PortraitPanelText;
+    public Text LandscapeLeftPanelText;
+    public Text LandscapeRightPanelText;
+    public TextAsset InformationFile;
+    public Text InstructionsObject;
+    private string InformationText;
+
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -60,6 +68,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         m_PreviousStatus = previousStatus;
         m_NewStatus = newStatus;
         string DisplayModelName = mTrackableBehaviour.TrackableName; // ----------------------------------------------------------- Variable that stores the AR marker/model name
+        string InformationText = InformationFile.text; // Initializes information text string to be displayed, by loading the respective Information text file into the variable
+        string InfoInstructionText = InstructionsObject.text; // ----------------------------------------------------------- Info Instructions to be displayed when tracking marker is lost. ----------------
+
 
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED ||
@@ -68,6 +79,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
             PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = DisplayModelName;// Make all canvas UI ModelName objects' text component = DisplayModelName
+            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InformationText;
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
@@ -75,6 +87,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
             OnTrackingLost();
             PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = "Searching for Marker..."; // Make all canvas UI ModelName objects' text component = "Searching for Marker" string
+            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InfoInstructionText;
+
         }
         else
         {
@@ -84,6 +98,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             // Call OnTrackingLost() to hide the augmentations
             OnTrackingLost();
             PortraitModelName.text = LandscapeLeftModelName.text = LandscapeRightModelName.text = "Searching for Marker..."; // ERROR HANDLER Make all canvas UI ModelName objects' text component = "Searching for Marker" string ERROR HANDLER
+            PortraitPanelText.text = LandscapeLeftPanelText.text = LandscapeRightPanelText.text = InfoInstructionText; // ERROR HANDLER Make all canvas UI PanelText objects' text component = "Searching for Marker" string ERROR HANDLER
         }
     }
 

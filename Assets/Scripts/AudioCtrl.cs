@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioCtrl : MonoBehaviour
 {
+    // Initialise variables to be toggled on and off
     public GameObject PortraitUnmutedIcon;
     public GameObject PortraitMutedIcon;
 
